@@ -1,0 +1,217 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html> 
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+  <title>Google Maps Multiple Markers</title> 
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgPAURPD6hyNrsQf1qqa2VoRicjwqJjBk&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+
+  <style>
+    .box {
+      float: left;
+      height: 20px;
+      width: 20px;
+      margin-bottom: 15px;
+      border: 1px solid black;
+      clear: both;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .green {
+      background-color: green;
+    }
+
+    .blue {
+      background-color: blue;
+    }
+
+    .yellow {
+      background-color: yellow;
+    }
+
+    .pink {
+      background-color: pink;
+    }
+  </style>
+</head> 
+<body>
+  <div id="map" style="width: 100%; height: 700px;"></div>
+  <div id="data" style="display: none;">{{all_data}}</div>
+  <br>
+  <a href="{% url 'data:home' %}">Go Back</a> 
+  <br><br>
+  <div><div class='box pink'></div>: Equipment Support  </div>
+  <br>
+  <div><div class='box red'></div>: Fire Location</div>
+  <br>
+  <div><div class='box yellow'></div>:  Fire Location</div>
+  <br>
+  <div><div class='box blue'></div>:  Fire Location</div>
+
+  <br>
+  <h1 style="width:30%; margin: auto; display: block;">Equipment Support</h1>
+  <br>
+  <img src="{% static 'images/equipment.png' %}" alt="Random Name" style="width:70%; margin: auto; display: block;">
+
+  <script>
+
+    let map;
+
+    function initMap() {
+
+      var data = JSON.parse(document.getElementById("data").innerHTML);
+      var result =  JSON.parse("{{result}}");
+
+      var equipment = JSON.parse("{{equipment}}");
+      var equipments = [];
+      for (let i = 0; i < equipment.length; i++) {
+        equipments.push([equipment[i][0], equipment[i][1]])
+      }
+      
+      var locations = [];
+      var locations0 = [];
+      var locations1 = [];
+      var locations2 = [];
+      for (let i = 0; i < data.length; i++) {
+        if (result[i] === 0) {
+          locations0.push([data[i][0] + ',' + data[i][1], data[i][0], data[i][1]])
+        }
+        if (result[i] === 1) {
+          locations1.push([data[i][0] + ',' + data[i][1], data[i][0], data[i][1]])
+        }
+        if (result[i] === 2) {
+          locations2.push([data[i][0] + ',' + data[i][1], data[i][0], data[i][1]])
+        }
+      }
+
+      console.log(locations0)
+      console.log(locations1)
+      console.log(locations2)
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(37.3382, -121.8863),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    var show = ['Amador-El Dorado','Butte','Fresno-Kings','Humboldt-Del Norte','Lassen-Modoc','Madera-Mariposa-Merced	','Mendocino','Nevada-Yuba-Placer','San Benito-Monterey'];
+    for (i = 0; i < equipments.length; i++) { 
+      let position = new google.maps.LatLng(parseFloat(equipments[i][0]), parseFloat(equipments[i][1]));
+      const marker = new google.maps.Marker({
+          position: position,
+          icon: {
+          url: "http://maps.google.com/mapfiles/ms/icons/pink-dot.png"
+        },
+          map: map,
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(show[i]);
+          infowindow.open(map, marker);
+        }
+        })(marker, i));
+    }
+
+
+    for (i = 0; i < locations0.length; i++) { 
+      let position = new google.maps.LatLng(parseFloat(locations0[i][1]), parseFloat(locations0[i][2]));
+      const marker = new google.maps.Marker({
+          position: position,
+          icon: {
+          url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+        },
+          map: map,
+        });
+    }
+
+    for (i = 0; i < locations1.length; i++) { 
+      let position = new google.maps.LatLng(parseFloat(locations1[i][1]), parseFloat(locations1[i][2]));
+      const marker = new google.maps.Marker({
+          position: position,
+          icon: {
+          url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+        },
+          map: map,
+        });
+    }
+
+    for (i = 0; i < locations2.length; i++) { 
+      let position = new google.maps.LatLng(parseFloat(locations2[i][1]), parseFloat(locations2[i][2]));
+      const marker = new google.maps.Marker({
+          position: position,
+          icon: {
+          url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+        },
+          map: map,
+        });
+    }
+
+    // for (i = 0; i < locations0.length; i++) {  
+    //   // marker = new google.maps.Marker({
+    //   //   position: new google.maps.LatLng(locations0[i][1], locations0[i][2]),
+    //   //   map: map,
+    //   //   icon: {
+    //   //     url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+    //   //   }
+    //   // });
+
+    //   const icons = [
+    //     {
+    //       url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+    //     },
+    //     {
+    //       url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+    //     }, 
+    //     {
+    //       url: "http://maps.google.com/mapfiles/ms/icons/pink-dot.png"
+    //     }
+    //   ];
+
+    //   const features = [
+    //   {
+    //     position: new google.maps.LatLng(parseFloat(locations0[i][1]), parseFloat(locations0[i][2])),
+    //   },
+    //   {
+    //     position: new google.maps.LatLng(parseFloat(locations1[i][1]), parseFloat(locations1[i][2])),
+    //   },
+    //   {
+    //     position: new google.maps.LatLng(parseFloat(locations2[i][1]), parseFloat(locations2[i][2])),
+    //   },
+
+    //   ];
+    //   for (let j = 0; j < features.length; j++) {
+    //     const marker = new google.maps.Marker({
+    //       position: features[j].position,
+    //       icon: icons[j],
+    //       map: map,
+    //     });
+    //   }
+
+    //   // google.maps.event.addListener(marker, 'click', (function(marker, i) {
+    //   //   return function() {
+    //   //     infowindow.setContent(locations0[i][0]);
+    //   //     infowindow.open(map, marker);
+    //   //   }
+    //   // })(marker, i));
+    // }
+
+  }
+  </script>
+
+  <script type="text/javascript">
+    
+  </script>
+</body>
+</html>

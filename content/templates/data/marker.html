@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+  <title>Google Maps Multiple Markers</title> 
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgPAURPD6hyNrsQf1qqa2VoRicjwqJjBk&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+</head> 
+<body>
+  <div id="map" style="width: 100%; height: 700px;"></div>
+  <div id="data" style="display: none;">{{all_data}}</div>
+  <a href="{% url 'data:home' %}">Go Back</a> 
+
+  <script>
+
+    let map;
+
+    function initMap() {
+
+      var data = JSON.parse(document.getElementById("data").innerHTML);
+      var locations = [];
+      for (let i = 0; i < data.length; i++) {
+        locations.push([data[i][2] + ':' + data[i][3], data[i][0], data[i][1], i + 1])
+      }
+      
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(37.3382, -121.8863),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+
+    }
+  </script>
+
+  <script type="text/javascript">
+    
+  </script>
+</body>
+</html>

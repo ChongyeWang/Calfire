@@ -1,0 +1,104 @@
+{% extends 'layouts/default/page.html' %}
+
+
+{% block content %}
+{% load static %}
+
+
+
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["imagebarchart"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data =  "{{2020_true}}";
+        console.log(data)
+
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'MajorIncident', 'NotMajorIncident'],
+          ['2019',  parseInt("{{2019_true}}"), parseInt("{{2019_true}}")],
+          ['2018',  parseInt("{{2018_true}}"), parseInt("{{2018_true}}")],
+          ['2017',  parseInt("{{2017_true}}"), parseInt("{{2017_true}}")],
+          ['2016',  parseInt("{{2016_true}}"), parseInt("{{2016_true}}")]
+        ]);
+
+        var chart = new google.visualization.ImageBarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, {width: 800, height: 340, min: 0});
+      }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Statistics'],
+          ['2019',      parseInt("{{2019_true}}") + parseInt("{{2019_true}}")],
+          ['2018',      parseInt("{{2018_true}}") +  parseInt("{{2018_true}}")],
+          ['2017',  parseInt("{{2017_true}}") + parseInt("{{2017_true}}")],
+          ['2016', parseInt("{{2016_true}}") + parseInt("{{2016_true}}")],
+        ]);
+
+        var options = {
+          title: 'By Year'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Mon', 'Number'],
+          ['Jan',    parseInt("{{date_01}}")],
+          ['Feb',      parseInt("{{date_02}}")],
+          ['Mar',  parseInt("{{date_03}}")],
+          ['Apr', parseInt("{{date_04}}")],
+          ['May',    parseInt("{{date_05}}")],
+          ['Jun',    parseInt("{{date_06}}")],
+          ['Jul',    parseInt("{{date_07}}")],
+          ['Aug',    parseInt("{{date_08}}")],
+          ['Sep',    parseInt("{{date_09}}")],
+          ['Dec',    parseInt("{{date_10}}")],
+          ['Nov',    parseInt("{{date_11}}")],
+          ['Dec',    parseInt("{{date_12}}")],
+        ]);
+
+        var options = {
+          title: 'By Month',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    </script>
+
+  </head>
+  <body>
+    <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+    <div id="piechart" style="width: 900px; height: 500px; margin-left: 200px;"></div>
+    <h3 style="margin-left: 220px; font-weight: bold;">Major Incidents</h3>
+    <div id="chart_div" style="width: 400px; height: 340px; margin-left: 200px;"></div>
+
+    <br><br>
+    <a style="margin-left: 220px; font-weight: bold;" href="{% url 'data:home' %}">Go Back</a> 
+    <br><br>
+    
+  </body>
+</html>
+
+
+{% endblock %}

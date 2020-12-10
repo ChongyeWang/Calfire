@@ -1,0 +1,48 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+<style type="text/css">
+    /* Optional: Makes the sample page fill the window. */
+
+    table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+  </style>
+
+<div id="main">
+    <h1></h1>
+    <br>
+   
+    
+    
+  <table>
+    <tr>
+        <th>Name</th>
+        <th>Counties</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    {% for data in all_data %}
+    <tr>
+      <th>{{data.Name}}</th>
+      <th>{{data.Counties}}</th>
+      <th>{{data.Started}}</th>
+      <th>{{data.Extinguished}}</th>
+      <th>{{data.SearchDescription}}</th>
+    </tr>
+
+    {% endfor %}
+  </table>
+
+  
+
+    <a href="{% url 'data:home' %}">Go Back</a> 
+</div>
+
+{% endblock %}

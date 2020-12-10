@@ -1,0 +1,74 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+
+{% block content %}
+<head>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<style type="text/css">
+    /* Optional: Makes the sample page fill the window. */
+    #main {
+        text-align: center;
+    }
+
+    #content {
+        font-weight: bold;
+    }
+
+    #about 
+    {
+        margin-left: 200px;
+        margin-right: 200px;
+        text-align: justify;
+
+    }
+
+    #back {
+        margin-left: 200px;
+        color: blue;
+    }
+  </style>
+
+<div >
+    <h1 id="main">About the website</h1>
+    <br>
+    <p id="about"> Concerning the strong summer forest fires in California, it would be helpful to launch an application that can predict the locations that are most likely to burn. The designed  application can detect the likelihood of wild fire for different locations by machine learning algorithms. It can be used by environmentalists to protect the environment. Furthermore, it can be utilized by the people who inhabit such locations. They need to be on alert when the likelihood of fire is high. Jurisdictions such as cities and counties along with agencies such as Cal Fire and the US Forest Service can be notified of dangerous conditions. Moreover, It may be possible to programmatically recommend forestry practices to address the area-specific conditions that contribute to the likelihood of fire.
+    </p>
+    <a href="{% url 'data:get_map' %}" id="back">Go Back</a> 
+
+    <!-- The Contact Section -->
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+    <h2 class="w3-wide w3-center">CONTACT</h2>
+    <p class="w3-opacity w3-center"><i>Questions? Contact us today!</i></p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px"></i> Fremont, CA<br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: +(800)122 243<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: cal_fire@gmail.com<br>
+      </div>
+      <div class="w3-col m6">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+
+</div>
+
+{% endblock %}

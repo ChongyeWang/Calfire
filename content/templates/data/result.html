@@ -1,0 +1,28 @@
+{% extends 'layouts/default/page.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+<style type="text/css">
+    /* Optional: Makes the sample page fill the window. */
+    #main {
+        text-align: center;
+    }
+
+    #content {
+        font-weight: bold;
+    }
+  </style>
+
+<div id="main">
+    <h1>Summary Result</h1>
+    <br>
+    <h2>Date: {{date}}</h2>
+    <h2>Latitude: {{lat}}</h2>
+    <h2>Longitude: {{lon}}</h2>
+    <h2>Fire Threaten: <span id="content">{{danger}}</span></h2>  
+    <a href="{% url 'data:get_map' %}">Go Back</a> 
+</div>
+
+{% endblock %}

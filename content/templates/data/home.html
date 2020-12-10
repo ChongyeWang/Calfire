@@ -1,0 +1,283 @@
+{% extends 'layouts/default/page.html' %}
+
+
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<title>Home Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+<body>
+
+
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:82px">
+
+  <!-- Automatic Slideshow Images -->
+  <div class="mySlides w3-display-container w3-center">
+    <!-- <img src="/w3images/la.jpg" style="width:100%"> -->
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+     
+      <p style="color: black;"><b>Interstate 5,	Kings	burned 2,060 acres</b></p>   
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <!-- <img src="/w3images/ny.jpg" style="width:100%"> -->
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+
+      <p style="color: black;"><b>Range,	San Luis Obispo	burned 5,000 acres</b></p>    
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <!-- <img src="/w3images/chicago.jpg" style="width:100%"> -->
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+      <p style="color: black;"><b>Scorpion,	Santa Barbara	burned 1,395 acres</b></p>    
+    </div>
+  </div>
+
+  <!-- The Band Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" id="band">
+    <h2 class="w3-wide">2020 Calfire Season</h2>
+    <p class="w3-opacity"><i></i></p>
+    <p class="w3-justify">The 2020 California wildfire season is a series of ongoing wildfires that are burning across the state of California. The season is a part of the 2020 Western United States wildfire season. As of November 24, 2020, over 9,279 fires have burned 4,359,517 acres (1,764,234 ha), more than 4% of the state's roughly 100 million acres of land, making 2020 the largest wildfire season recorded in California's modern history (according to the California Department of Forestry and Fire Protection), though roughly equivalent to the pre-1800 levels which averaged around 4.4 million acres yearly and up to 12 million in peak years. The intensity of the fires has been increased by drying and heating from human-induced climate change, as well as decades of poor forest management.</p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-third">
+
+        <img src="{% static 'images/home4.jpg' %}" class="w3-round w3-margin-bottom" alt="Random Name" style="width:90%; height: 180px;">
+      </div>
+      <div class="w3-third">
+
+        <img src="{% static 'images/home3.jpg' %}" class="w3-round w3-margin-bottom" alt="Random Name" style="width:90%; height: 180px;">
+      </div>
+      <div class="w3-third">
+
+        <img src="{% static 'images/home2.jpg' %}" class="w3-round" alt="Random Name" style="width:90%; height: 180px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- The Tour Section -->
+  <div class="w3-black" id="tour">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">Data Analytics Support</h2>
+      <p class="w3-opacity w3-center"><i>See our functions here!</i></p><br>
+
+      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+        <div class="w3-third w3-margin-bottom">
+          <!-- <img src="/w3images/newyork.jpg" alt="New York" style="width:100%" class="w3-hover-opacity"> -->
+          <div class="w3-container w3-white">
+            <p><b>Data Analytics</b></p>
+            <p>View the Chart Analytics board of California fire</p>
+            <button class="w3-button w3-black w3-margin-bottom"><a class="nav-link" href="{% url 'data:chart' %}">View Chart Summary</a></button>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <!-- <img src="/w3images/paris.jpg" alt="Paris" style="width:100%" class="w3-hover-opacity"> -->
+          <div class="w3-container w3-white">
+            <p><b>View Statistics</b></p>
+            <p>View the records of California fire from 2013 to 2020</p>
+            <button class="w3-button w3-black w3-margin-bottom"><a class="nav-link" href="{% url 'data:stat' %}">View Fire Statistics</a></button>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <!-- <img src="/w3images/sanfran.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity"> -->
+          <div class="w3-container w3-white">
+            <p><b>View Map</b></p>
+
+            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+            <button class="w3-button w3-black w3-margin-bottom"><a class="nav-link" href="{% url 'data:marker' %}">View Locations on Map</a></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+  <h3 style="text-align: center; font-weight: bold;">CalFire Data Overview</h3>
+  <br>
+  <div class="row">
+    
+    <div class="column1">
+      <p><ul>
+        <li><a data-udi="umb://media/acd140ea66e74e5dae7d88ea53194468" href="/media/11416/top20_acres.pdf">Top 10 Largest California Wildfires</a></li>
+        <li><a href="/media/11417/top20_destruction.pdf">Top 10 Most Destructive California Wildfires</a></li>
+        <li><a data-udi="umb://media/332d4b4013854646bc0ffb58e16d6953" href="/media/5512/top20_deadliest.pdf">Top 10 Deadliest California Wildfires</a></li>
+        <li><a href="/media/11397/fires-acres-all-agencies-thru-2018.pdf">Wildland Fires &amp; Acres - All Jurisdictions (2013-2019)</a></li>
+        <li><a rel="noopener" data-udi="umb://media/80a6ff6587164371b1baddbcb3e47dc7" href="/media/8641/suppressioncostsonepage1.pdf" target="_blank">Suppression Costs</a></li>
+        
+        </ul></p>
+    </div>
+    <div class="column2"> <img src="{% static 'images/fire_stat.png' %}" alt="Random Name" style="width:80%; margin: auto; display: block;">
+    </div>
+  </div>
+
+  <style>.row {
+    display: flex;
+  }
+  
+  .column1 {
+    margin-left: 20px;;
+    flex: 25%;
+  }
+  .column2 {
+    flex: 70%;
+  }
+  </style>
+
+  
+<br><br>
+<!-- The Tour Section -->
+<div class="w3-black" id="tour">
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+    <h2 class="w3-wide w3-center">Map Review Support</h2>
+    <p class="w3-opacity w3-center"><i>See our functions here!</i></p><br>
+
+    <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+      <div class="w3-third w3-margin-bottom">
+        <!-- <img src="/w3images/newyork.jpg" alt="New York" style="width:100%" class="w3-hover-opacity"> -->
+        <div class="w3-container w3-white">
+          <p><b>Fire Prediction</b></p>
+          <p>Predict a fire by location provided</p>
+          <button class="w3-button w3-black w3-margin-bottom"><a class="nav-link" href="{% url 'data:get_map' %}">View Prediction</a></button>
+        </div>
+      </div>
+      <div class="w3-third w3-margin-bottom">
+        <!-- <img src="/w3images/paris.jpg" alt="Paris" style="width:100%" class="w3-hover-opacity"> -->
+        <div class="w3-container w3-white">
+
+          <img src="{% static 'images/map.png' %}" class="w3-round" alt="Random Name" style="width:90%; height: 165px;">
+        </div>
+      </div>
+      <div class="w3-third w3-margin-bottom">
+        <!-- <img src="/w3images/sanfran.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity"> -->
+        <div class="w3-container w3-white">
+          <p><b>Equipment Support</b></p>
+
+          <p>Provide map review and equipment support</p>
+          <button class="w3-button w3-black w3-margin-bottom"><a class="nav-link" href="{% url 'data:kMeans' %}">View Support</a></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <!-- Ticket Modal -->
+  <div id="ticketModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container w3-teal w3-center w3-padding-32"> 
+        <span onclick="document.getElementById('ticketModal').style.display='none'" 
+       class="w3-button w3-teal w3-xlarge w3-display-topright">×</span>
+        <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Tickets</h2>
+      </header>
+      <div class="w3-container">
+        <p><label><i class="fa fa-shopping-cart"></i> Tickets, $15 per person</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="How many?">
+        <p><label><i class="fa fa-user"></i> Send To</label></p>
+        <input class="w3-input w3-border" type="text" placeholder="Enter email">
+        <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">PAY <i class="fa fa-check"></i></button>
+        <button class="w3-button w3-red w3-section" onclick="document.getElementById('ticketModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
+        <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Contact Section -->
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
+    <h2 class="w3-wide w3-center">CONTACT</h2>
+    <p class="w3-opacity w3-center"><i>Questions? Contact us today!</i></p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px"></i> Fremont, CA<br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: +(800)122 243<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: cal_fire@gmail.com<br>
+      </div>
+      <div class="w3-col m6">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+<!-- End Page Content -->
+</div>
+
+<!-- Image of location/map -->
+<!-- <img src="/w3images/map.jpg" class="w3-image w3-greyscale-min" style="width:100%"> -->
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+  <i class="fa fa-instagram w3-hover-opacity"></i>
+  <i class="fa fa-snapchat w3-hover-opacity"></i>
+  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+  <i class="fa fa-twitter w3-hover-opacity"></i>
+  <i class="fa fa-linkedin w3-hover-opacity"></i>
+  <p class="w3-medium">Created in <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">2020</a></p>
+</footer>
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 4000);    
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
+
+
+
+{% endblock %}
